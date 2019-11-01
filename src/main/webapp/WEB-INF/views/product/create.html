@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>create</title>
+</head>
+<body>
+<form th:action="@{/create-product}" method="post" th:object="${product}">
+    <h1>Create New Product</h1>
+    <th:block th:if="${message}">
+        <p th:text="${message}"></p>
+    </th:block>
+    <input type="hidden" th:field="*{id}"/>
+    <table>
+        <tr>
+            <th>Name Product :</th>
+            <td><input type="text" th:field="*{name}"/></td>
+            <td th:errors="*{name}"></td>
+        </tr>
+        <tr>
+            <th>Type Product :</th>
+            <td>
+                <select th:field="*{typeProduct}">
+                    <option th:each="t:${typeProducts}" th:value="${t.id}" th:text="${t.type}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Price Product :</th>
+            <td><input type="text" th:field="*{price}"/></td>
+            <td th:errors="*{price}"></td>
+        </tr>
+        <tr>
+            <th>Amount Product :</th>
+            <td><input type="text" th:field="*{amount}"/></td>
+            <td th:errors="*{amount}"></td>
+        </tr>
+        <tr>
+            <th>Date Create :</th>
+            <td><input type="date" th:field="*{dateCreate}"/></td>
+        </tr>
+        <tr>
+            <th>Description Product :</th>
+            <td><input type="text" th:field="*{description}"/></td>
+            <td th:errors="*{description}"></td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+            <td><a th:href="@{/home}">Cancel</a></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
